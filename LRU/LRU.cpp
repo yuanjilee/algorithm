@@ -32,6 +32,11 @@ using namespace std;
  * 第五次操作后：大小超过了3，所以移除此时最不常使用的记录("2",
  * 2)，加入记录("4", 4)，并且为最常使用的记录，然后("3", 2)变为最不常使用的记录
  *
+ * 思路：
+ * 既然要达到O(1),那么可以用 hash 表用来get，而用链表实现 set;
+ * 链表插入时间复杂度O(1),查找O(n),那么就需要实现查找O(1).那么要实现
+ * 每次移除最后一个，添加在第一个。而双向链表能通过pre记住前一个，故选择
+ * 双向链表。
  */
 
 class Solution {
@@ -135,4 +140,15 @@ int main() {
         cout << v << endl;
     }
     return 0;
+
+    vector<vector<int>> res;
+    for (int i = 0; i < nodes.size(); i++) {
+        if (i % 2 == 0) {  // 偶数行
+            res.push_back(nodes[i]);
+        } else {  // 奇数行
+            vector<int> to_reversed = nodes[i];
+            reverse(to_reversed.begin(), to_reversed.end());
+            res.push_back(to_reversed);
+        }
+    }
 }

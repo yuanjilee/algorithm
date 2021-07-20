@@ -4,7 +4,7 @@
 using namespace std;
 
 /**
- *
+ * 0-1 背包问题，给定数组，任意元素和为 target
  */
 
 class Solution {
